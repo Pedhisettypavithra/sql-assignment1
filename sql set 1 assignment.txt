@@ -1,0 +1,232 @@
+                                          SQL ASSIGNMENT SOLUTIONS
+1) WRITE A QUERY TO LIST ALL THE EMPLOYEES WHO ARE WORKING AS CLERK.
+
+    SELECT*   
+    FROM emp
+    WHERE job='CLERK'
+-----------------------------------------------------------------------------
+2)WRITE A QUERY TO LIST THE EMPLOYEES WHO ARE WORKING AS CLERKS OR MANAGERS.
+
+   SELECT *
+   FROM employees
+   WHERE job_nameIN('CLERK','MANAGER');
+-----------------------------------------------------------
+3)WRITE A QUERY TO GET THE CURRENT DATE.
+
+  SELECT CURRENT_DATE;
+-----------------------------------------------------------
+4)WRITE A QUERY TO LIST THE EMPLOYEES WHOSE SALARIES ARE WITHIN THE RANGE OF 500 AND 1000.
+
+  SELECT *
+  FROM employees
+  WHERE salary BETWEEN 500 AND 1000;
+------------------------------------------------------------
+5)WRITE A QUERY TO LIST THE EMPLOYEES WHO HAVE JOINED IN THE MONTH OF DECEMBER.
+
+  SELECT *
+  FROM employees
+  WHERE to_char(hire_date,'mon')='dec';
+---------------------------------------------------------------
+6)WRITE A QUERY TO LIST THE EMPLOYEES WHOSE SALARIES ARE NOT WITHIN THE RANGE OF1000 AND 2500.
+
+  SELECT 
+        emp_id,
+        ename,
+        salary
+  FROM emp
+  WHERE salary NOTBETWEEN 1000 AND 2500
+  ORDER BY
+        salary;
+---------------------------------------------------------------------------
+7)WRITE A QUERY WHO ARE GETTING 800,950,3000,5000.
+
+  SELECT ename
+  FROM emp
+  WHERE SAl IN(800,950,3000,5000)
+-----------------------------------------------------------
+8)TO LIST ALL THE EMPLOYEES WHOSE NAMES ARE HAVING 'L' AS SECOND CHARACTER.
+
+  SELECT *
+  FROM emp
+  WHERE ename LIKE "_L%";
+--------------------------------------------------------------
+9)TO LIST ALL THE EMPLOYEES WHOSE NAMES ARE HAVING 'D'AS LAST CHARACTER.
+
+
+  SELECT *
+  FROM emp
+  WHERE ename LIKE"%D";
+-----------------------------------------------------------------------
+10) TO LIST ALL THE EMPLOYEES WHOSE NAMES ARE HAVING JUST 5 CHARACTERS AS LENGTH.
+
+   SELECT *
+   FROM emp
+   WHERE ename LIKE"_____";
+---------------------------------------------------------------------------
+11) TO LIST ALL THE EMPLOYEES WHOSE NAMES ARE STARTING WITH 'T' AND ENDING WITH 'R'.
+
+   SELECT *
+   FROM emp
+   WHERE ename LIKE'T%R';
+------------------------------------------------------------------------------
+12)DISPLAY THOSE EMPLOYEES WHO'S NAME CONTAIN "A".
+
+   SELECT*
+   FROM emp
+   WHERE ename LIKE '%A%';
+-----------------------------------------------------------------------------
+13) DISPLAY THOSE EMPLOYEE WHO JOINED THE COMPANY  BEFORE 19th OF THE MONTH.
+
+   SELECT
+   FROM emp
+   WHERE to_char(hire_date,"DD")<'19';
+---------------------------------------------------------------------------
+14) WHAT IS THE EMPLOYEE NUMBER OF'JAMES'.
+
+   SELECT empno
+   FROM emp
+   WHERE ename LIKE 'JAMES'
+-------------------------------------------------------------------------------------------
+15) WHAT IS THE SALARY OF'KING'.
+
+   SELECT sal
+   FROM emp
+   WHERE ename LIKE'KING'
+------------------------------------------------------------------------------------------------
+16)WHO IS THE PRESIDENT FOR ORGANIZATION.
+
+   SELECT ename
+   FROM emp
+   WHERE job LIKE 'PRESIDENT'
+--------------------------------------------------------------------------------------- 
+17)LIST ALL DETAILS OF ALL THE MANAGERS.
+
+   SELECT *
+   FROM emp
+   WHERE job = 'MANAGER'
+---------------------------------------------------------------------------------------
+18)GIVE EMPLOYEE DETAILS FOR EMPLOYEES DRAWING COMMISSION.
+
+   SELECT *
+   FROM emp
+   WHERE COMM IS NOT NULL
+-----------------------------------------------------------------------------------------
+19)LIST EMPLOYEES WHO JOINED BEFORE APRIL-1981.
+   SELECT *
+   FROM EMP
+   WHERE HIREDATE < (’01-APR-81’);
+
+----------------------------------------------------------------------------------------
+20)WHAT IS THE SALARY OF FOLLOWING:
+   
+   SELECT ename,sal
+   FROM emp
+   WHERE ename IN('KING','BLAKE,'FORD','SMITH');
+----------------------------------------------------------------------------------------------
+21) KING,BLAKE,FORD,SMITH
+
+   SELECT ename , sal
+   FROM emp
+   WHERE ename IN ('KING','BLAKE','FOOD','SMITH');
+-------------------------------------------------------------------------------------------------
+22)WHO IS DRAWING SAARY LESS THAN 3500.
+
+   SELECT *
+   FROM emp
+   WHERE sal< 3500;
+-----------------------------------------------------------------------------------------
+23)LIST THE DETAILS OF ALL THE CLERKS.
+   
+   SELECT *
+   FROM EMP
+   WHERE HIREDATE < (’01-JAN-81’);
+--------------------------------------------------------------------------------------------------------------------
+24)WHAT IS THE ANNUAL SALARY FOR EACH THE EMPLOYEES.
+   
+    SELECT ENAME,SAL,SAL*12 AS 'ANNUAL'
+    FROM EMP;
+---------------------------------------------------------------------------------------------------------------------------
+25)IF THERE IS A HIKE IN MONTHLY SALARY BY 20% FOR EORD,WHAT WILL BE HIS ANNUAL SALARY.
+  
+   SELECT (sal*12)*20/100 as annualsal 
+   FROM emp
+   WHERE ename = 'FORD';
+-------------------------------------------------------------------------------------------------------------------------
+26)WHAT IS THE TOTAL SALARY FOR EACH DEPARTMENT.
+  
+  SELECT sum(sal)astotalsal,deptno
+  FROM emp
+  GROUP by deptno;
+------------------------------------------------------------------------------------------------------------------
+27)WHO IS DRAWING THE LOWEST SALARY IN DEPT 10.
+
+  SELECT deptno,min(sal) as minsal 
+  FROM emp
+  WHERE deptno='10'
+  GROUP by deptno;
+---------------------------------------------------------------------------------------------------------------------
+28)WHAT IS THE AVERAGE SALARY FOR MANAGERS.
+  
+  SELECT JOB,AVG(SAL) AS'AVGSALSALMAN'
+  FROM EMP
+  WHERE JOB ='MANAGER'
+  GROUP BY JOB;
+---------------------------------------------------------------------------------------------------------- 
+29)WHAT IS THE TOTAL SALARY FOR SALESMAN.
+
+   SELECT JOB,SUM(SAL) AS 'TOTALSALSALMAN'
+   FROM EMP
+   WHERE JOB ='SALESMAN'
+   GROUP BY JOB;
+--------------------------------------------------------------------------------------------------------------------
+30)WHICH DEPARTMENT IS HAVING THE LOWEST AVERAGE SALARY.
+
+   SELECT DEPTNO,AVG(SAL) AS'LOWEST AVG SALARY'
+   FROM EMP
+   GROUP BY DEPTNO
+   HAVING AVG(SAL)<(SELECT AVG(SAL) FROM EMP);
+
+   -----------------------------------------------------------------------------------------------------------------------------------
+31) HOW MANY PERSONS ARE IN EACH ROLE.
+   
+   SELECT JOB,COUNT(JOB) AS 'INEACHDEPT'
+   FROM EMP
+   GROUP BY JOB;
+ -----------------------------------------------------------------------------------------------------------------------
+32)WHAT IS THE HIGHEST SALARY AMONG ANALYST.
+
+  seect max(sal)as 'maxsal',job from emp
+  where job='analyst' 
+  group by job;
+------------------------------------------------------------------------------------------------------------------------------------------
+33)WHAT IS THE HIGHEST COMMISSION PAID
+
+  SELECT MAX(COMM) AS 'HIGHCOMMPAID'
+  FROM EMP;
+------------------------------------------------------------------------------------------------------
+34)HOW MANY DEPARTMENTS ARE THERE.
+ 
+   SELECT COUNT(DISTINCT DEPTNO) AS 'TOTDEPT'
+   FROM EMP;
+--------------------------------------------------------------------------------------------
+35)LIST THE NAMES IN WHICH 3rd CHARACTER IS 'L'.
+
+   SELECT ENAME
+   FROM EMP
+   WHERE ENAME LIKE '___L%';   
+
+   
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
